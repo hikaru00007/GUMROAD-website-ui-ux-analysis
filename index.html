@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gumroad Component Sheet</title>
+<meta name="description" content="An interactive component sheet for the Gumroad design language — buttons, forms, cards, fields, and every interaction, reconstructed from the production build.">
+<link rel="stylesheet" href="assets/gumroad-tokens.css">
+<link rel="stylesheet" href="assets/gumroad-components.css">
+<link rel="stylesheet" href="assets/sheet.css">
+</head>
+<body>
+<div class="sheet">
+
+<!-- ========================================================================
+     ICON SPRITE
+     Two conventions, both from the production bundle:
+       UI icons    24px grid, stroke-width 2, fill none, round caps
+       Brand icons official viewBox, fill currentColor
+     ======================================================================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="i-search" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="7"/><path d="m21 21-6-6"/>
+    </g>
+    <g id="i-check" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m4 12 5 5L20 6"/>
+    </g>
+    <g id="i-check-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 5-5"/>
+    </g>
+    <g id="i-alert" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5"/><path d="M12 16.4h.01"/>
+    </g>
+    <g id="i-info" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6h.01"/>
+    </g>
+    <g id="i-arrow-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 12h16"/><path d="m13 5 7 7-7 7"/>
+    </g>
+    <g id="i-arrow-up-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 17 17 7"/><path d="M8 7h9v9"/>
+    </g>
+    <g id="i-arrow-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 12H4"/><path d="m11 5-7 7 7 7"/>
+    </g>
+    <g id="i-sun" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/>
+    </g>
+    <g id="i-moon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5"/>
+    </g>
+    <g id="i-monitor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2.5" y="4" width="19" height="12" rx="1.5"/><path d="M8.5 20h7M12 16v4"/>
+    </g>
+    <g id="i-zap" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>
+    </g>
+    <g id="i-lock" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4.5" y="10.5" width="15" height="10.5" rx="1.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
+    </g>
+    <g id="i-globe" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/>
+    </g>
+    <g id="i-menu" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6h18M3 12h18M3 18h18"/>
+    </g>
+    <g id="i-x" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m5 5 14 14M19 5 5 19"/>
+    </g>
+    <g id="i-plus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 4v16M4 12h16"/>
+    </g>
+    <g id="i-star" fill="currentColor">
+      <path d="m12 2.6 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3-5.8 3 1.1-6.5L2.6 9.4l6.5-.9L12 2.6z"/>
+    </g>
+    <g id="i-sparkle" fill="currentColor">
+      <path d="m12 3 1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4L12 3z"/>
+    </g>
+    <g id="i-copy" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M6 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V6"/>
+    </g>
+    <!-- brand: official viewBoxes, fill currentColor so dark mode is free -->
+    <g id="b-github" fill="currentColor">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 3.125-3.304 6.426-3.436 4.125.808 7.523 1.63 10.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"/>
+    </g>
+    <g id="b-x" fill="currentColor">
+      <path d="M714.163 519.284 1160.89 0H1055.03L667.137 450.887 357.328 0H0L468.492 681.821 0 1226.37H105.866L515.491 750.218 842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 686.66l-313.68 450.12h71.89L640.32 687.18h-71.155Z"/>
+    </g>
+    <g id="b-instagram" fill="currentColor">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+    </g>
+    <g id="b-youtube" fill="currentColor">
+      <path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.09 0 12 0 12s0 3.91.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14C24 15.91 24 12 24 12s0-3.91-.5-5.8zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ========================================================================
+     TOPBAR
+     ======================================================================== -->
+<header class="sheet-bar">
+  <a class="sheet-bar__brand" href="#top">
+    <svg viewBox="0 0 98 96" aria-hidden="true"><use href="#b-github"/></svg>
+    Gumroad component sheet
+  </a>
+  <div class="sheet-bar__tools">
+    <button class="gr-btn gr-btn--sm" id="motion-toggle" type="button" aria-pressed="false">
+      <svg width="16" height="16" aria-hidden="true"><use href="#i-zap"/></svg>
+      <span id="motion-label">Motion on</span>
+    </button>
+    <div class="seg" role="group" aria-label="Color theme">
+      <button class="seg__btn" type="button" data-theme-set="light" aria-pressed="false">
+        <svg aria-hidden="true"><use href="#i-sun"/></svg> Light
+      </button>
+      <button class="seg__btn" type="button" data-theme-set="system" aria-pressed="true">
+        <svg aria-hidden="true"><use href="#i-monitor"/></svg> Auto
+      </button>
+      <button class="seg__btn" type="button" data-theme-set="dark" aria-pressed="false">
+        <svg aria-hidden="true"><use href="#i-moon"/></svg> Dark
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="sheet__main" id="top">
+
+  <!-- ====================================================================
+       HERO
+       ==================================================================== -->
+  <header style="text-align:center; padding:4rem 0 3rem;">
+    <p class="sec__num">Reconstructed from the production build</p>
+    <h1 class="gr-display" style="margin:.75rem 0 1rem;">Every part of it</h1>
+    <p class="gr-lede" style="margin-inline:auto;">
+      Sixteen sections of live, hoverable, fillable components. Rails, Inertia,
+      React, Tailwind v4, ABC&nbsp;Favorit. Move your mouse over everything.
+    </p>
+    <div class="cluster" style="justify-content:center; margin-top:2.5rem;">
+      <div class="gr-offset">
+        <span class="gr-offset__ghost gr-offset__ghost--back" aria-hidden="true"></span>
+        <span class="gr-offset__ghost gr-offset__ghost--front" aria-hidden="true"></span>
+        <a class="gr-offset__face gr-btn gr-btn--primary" href="#mechanic">Start with the mechanic</a>
+      </div>
+      <a class="gr-btn gr-btn--outline" href="#buttons">Skip to buttons</a>
+    </div>
+  </header>
+
+  <nav class="jumpnav" aria-label="Sections">
+    <a href="#mechanic">00 The mechanic</a>
+    <a href="#color">01 Color</a>
+    <a href="#type">02 Typography</a>
+    <a href="#buttons">03 Buttons</a>
+    <a href="#offset">04 Offset print</a>
+    <a href="#nav">05 Navigation</a>
+    <a href="#cards">06 Cards</a>
+    <a href="#forms">07 Forms</a>
+    <a href="#accordion">08 Accordion</a>
+    <a href="#fields">09 Color fields</a>
+    <a href="#overlays">10 Overlays</a>
+    <a href="#feedback">11 Feedback</a>
+    <a href="#motion">12 Motion</a>
+    <a href="#dark">13 Dark mode</a>
+    <a href="#rules">14 The rules</a>
+  </nav>
+
+  <!-- ====================================================================
+       00 — THE MECHANIC
+       ==================================================================== -->
+  <section class="sec" id="mechanic">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">00 — The mechanic</p>
+        <h2 class="sec__title">The shadow is revealed, not added</h2>
+      </div>
+      <p class="sec__note">
+        Hover any solid object in this sheet. The element travels up-and-left and a
+        hard, zero-blur shadow appears in the space it vacated. The offset always
+        equals the travel. Drag the sliders to break the rule and feel it stop working.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar">
+        <span class="demo__name">Offset laboratory</span>
+        <span class="demo__tag demo__tag--accent">Interactive</span>
+      </div>
+      <div class="lab">
+        <div class="lab__stage">
+          <button class="lab__btn" id="lab-btn" type="button">Hover me</button>
+        </div>
+        <div class="lab__controls">
+          <div>
+            <div class="lab__readout">
+              <label for="lab-travel">Travel distance</label>
+              <b><span id="lab-travel-out">4</span>px</b>
+            </div>
+            <input type="range" id="lab-travel" min="0" max="16" step="1" value="4">
+          </div>
+          <div>
+            <div class="lab__readout">
+              <label for="lab-shadow">Shadow offset</label>
+              <b><span id="lab-shadow-out">4</span>px</b>
+            </div>
+            <input type="range" id="lab-shadow" min="0" max="16" step="1" value="4">
+          </div>
+          <div>
+            <div class="lab__readout">
+              <span>Blur radius</span>
+              <b>0px — always</b>
+            </div>
+          </div>
+          <p class="hint" id="lab-verdict"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar">
+        <span class="demo__name">The rule at three scales</span>
+        <span class="demo__tag">Invariant</span>
+      </div>
+      <div class="demo__body">
+        <button class="gr-btn gr-btn--primary" type="button">56px · 4px → 4px</button>
+        <button class="gr-btn" type="button">Default · 4px → 4px</button>
+        <a class="gr-icon-action" href="#mechanic" aria-label="Small action, 1px to 2px">
+          <svg width="20" height="20" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          <span class="sr-only">Small action</span>
+        </a>
+      </div>
+      <details class="demo__source">
+        <summary>Source</summary>
+<pre>/* compiled from gumroad's cva — verbatim */
+"inline-flex items-center justify-center gap-2 cursor-pointer
+ border border-border rounded text-current font-[inherit] no-underline
+ transition-transform
+ hover:-translate-1
+ hover:shadow-[0.25rem_0.25rem_0_var(--color-black)]
+ active:translate-0 active:shadow-none"
+
+/* 40px variant, from the blog card */
+"group-hover:-translate-x-px group-hover:-translate-y-px
+ group-hover:shadow-[2px_2px_0_0_#000]"</pre>
+      </details>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       01 — COLOR
+       ==================================================================== -->
+  <section class="sec" id="color">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">01 — Color</p>
+        <h2 class="sec__title">Six brights, one accent</h2>
+      </div>
+      <p class="sec__note">
+        Flat, unmodulated, full saturation. No gradients, no tint ramps. The neutrals
+        are warm — <code>#f4f4f0</code> and <code>#242423</code> — which is what keeps
+        the brights from vibrating. Contrast ratios below are computed live.
+      </p>
+    </div>
+
+    <div class="swatches" id="swatches"></div>
+
+    <div class="demo" style="margin-top:1.5rem;">
+      <div class="demo__bar">
+        <span class="demo__name">The RGB-triplet trick</span>
+        <span class="demo__tag">Architecture</span>
+      </div>
+      <div class="demo__body demo__body--block">
+        <p style="margin:0 0 1rem; max-width:40rem;">
+          Colors are stored as space-separated channels, not hex, so alpha is applied
+          at the <em>consumption</em> site. That is how ten variables carry an entire
+          theme — muted, subtle, and borders are free derivatives, not hand-picked values.
+        </p>
+        <div class="cluster">
+          <span class="cluster" style="padding:.5rem 1rem; border:var(--border); border-radius:.25rem;">solid</span>
+          <span class="cluster" style="padding:.5rem 1rem; border:var(--border); border-radius:.25rem; background:rgb(var(--color)/.3);">.3</span>
+          <span class="cluster" style="padding:.5rem 1rem; border:var(--border); border-radius:.25rem; background:rgb(var(--color)/.1);">.1</span>
+          <span class="cluster" style="padding:.5rem 1rem; border:1px dashed rgb(var(--color)/.3); border-radius:.25rem; color:rgb(var(--color)/.5);">dashed · empty only</span>
+        </div>
+      </div>
+      <details class="demo__source">
+        <summary>Source</summary>
+<pre>:root {
+  --accent: 255 144 232;                    /* raw channels */
+  --color: 0 0 0;
+  --gray-1: .1;  --gray-2: .2;  --gray-3: .5;
+}
+--color-accent:    rgb(var(--accent));
+--color-muted:     rgb(var(--color) / var(--gray-3));
+--color-active-bg: rgb(var(--color) / var(--gray-1));
+--color-border:    rgb(var(--color) / var(--border-alpha));</pre>
+      </details>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       02 — TYPOGRAPHY
+       ==================================================================== -->
+  <section class="sec" id="type">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">02 — Typography</p>
+        <h2 class="sec__title">Big type stays light</h2>
+      </div>
+      <p class="sec__note">
+        ABC&nbsp;Favorit, delivered per-request through Inertia props rather than
+        hardcoded in CSS. Line height collapses to 1 as size grows. Weight 400 on
+        display — the border and the color do the work, not the letterforms.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar">
+        <span class="demo__name">Display · the closing manifesto</span>
+        <span class="demo__tag">font-weight 400</span>
+      </div>
+      <div class="demo__body demo__body--block" style="text-align:center;">
+        <p class="gr-display" style="margin:0;">Share your work.<br>Someone out there needs it.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar">
+        <span class="demo__name">Ramp</span>
+        <span class="demo__tag">xs → 9xl</span>
+      </div>
+      <div class="demo__body demo__body--block">
+        <div class="ramp">
+          <div class="ramp__row"><span class="ramp__meta">xs · 12/16</span><span class="ramp__specimen" style="font-size:.75rem;">Sells Procreate brush packs</span></div>
+          <div class="ramp__row"><span class="ramp__meta">sm · 14/20</span><span class="ramp__specimen" style="font-size:.875rem;">Sells content tutorials</span></div>
+          <div class="ramp__row"><span class="ramp__meta">base · 16/24</span><span class="ramp__specimen" style="font-size:1rem;">Anyone can earn their first dollar online</span></div>
+          <div class="ramp__row"><span class="ramp__meta">lg · 18/31</span><span class="ramp__specimen" style="font-size:1.125rem;">Just start with what you know</span></div>
+          <div class="ramp__row"><span class="ramp__meta">xl · 20/28</span><span class="ramp__specimen" style="font-size:1.25rem;">See what sticks, and get paid</span></div>
+          <div class="ramp__row"><span class="ramp__meta">2xl · 24/32</span><span class="ramp__specimen" style="font-size:1.5rem;">Built for new beginnings</span></div>
+          <div class="ramp__row"><span class="ramp__meta">3xl · 30/36</span><span class="ramp__specimen" style="font-size:1.875rem;">Simple, transparent pricing</span></div>
+          <div class="ramp__row"><span class="ramp__meta">4xl · 36/45</span><span class="ramp__specimen" style="font-size:2.25rem;">Money, incoming</span></div>
+          <div class="ramp__row"><span class="ramp__meta">5xl · 48/48</span><span class="ramp__specimen" style="font-size:3rem;">10% + $0.50</span></div>
+          <div class="ramp__row"><span class="ramp__meta">6xl · 60/60</span><span class="ramp__specimen" style="font-size:3.75rem;">Gumroad is run by an agent.</span></div>
+          <div class="ramp__row"><span class="ramp__meta">7xl · 72/72</span><span class="ramp__specimen" style="font-size:4.5rem;">Frequently asked</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar">
+        <span class="demo__name">Weight</span>
+        <span class="demo__tag">4 stops</span>
+      </div>
+      <div class="demo__body demo__body--block">
+        <div class="weight-row"><span class="ramp__meta">400 normal</span><span style="font-weight:400; font-size:1.5rem;">Go from 0 to $1</span></div>
+        <div class="weight-row"><span class="ramp__meta">500 medium</span><span style="font-weight:500; font-size:1.5rem;">Go from 0 to $1</span></div>
+        <div class="weight-row"><span class="ramp__meta">600 semibold</span><span style="font-weight:600; font-size:1.5rem;">Go from 0 to $1</span></div>
+        <div class="weight-row"><span class="ramp__meta">700 bold</span><span style="font-weight:700; font-size:1.5rem;">Go from 0 to $1</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       03 — BUTTONS
+       ==================================================================== -->
+  <section class="sec" id="buttons">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">03 — Buttons</p>
+        <h2 class="sec__title">Semantic color, not variant sprawl</h2>
+      </div>
+      <p class="sec__note">
+        One base class, then color and size on the axes. Every button inherits the
+        page typeface and takes its text color from its context, so the same component
+        works twenty ways without twenty components.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Semantic colors</span><span class="demo__tag">color axis</span></div>
+      <div class="demo__body">
+        <button class="gr-btn gr-btn--primary" type="button">Start selling</button>
+        <button class="gr-btn" type="button">Default</button>
+        <button class="gr-btn gr-btn--outline" type="button">Outline</button>
+        <button class="gr-btn gr-btn--accent" type="button">Accent</button>
+        <button class="gr-btn gr-btn--success" type="button">Success</button>
+        <button class="gr-btn gr-btn--warning" type="button">Warning</button>
+        <button class="gr-btn gr-btn--danger" type="button">Danger</button>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Sizes</span><span class="demo__tag">size axis</span></div>
+      <div class="demo__body">
+        <button class="gr-btn gr-btn--primary" type="button">px-4 py-3 · base</button>
+        <button class="gr-btn" type="button">default</button>
+        <button class="gr-btn gr-btn--sm" type="button">sm</button>
+        <button class="gr-btn" type="button" style="width:3rem;height:3rem;padding:0;" aria-label="Icon size">
+          <svg width="20" height="20" aria-hidden="true"><use href="#i-plus"/></svg>
+        </button>
+        <a class="gr-btn gr-btn--outline" href="#buttons">As an anchor</a>
+      </div>
+      <details class="demo__source">
+        <summary>Source</summary>
+<pre>size: {
+  default: "px-4 py-3 text-base leading-snug",
+  sm:      "p-2 text-sm leading-[1.3]",
+  icon:    "size-12 box-border",
+}</pre>
+      </details>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Brand buttons</span><span class="demo__tag">Checkout</span></div>
+      <div class="demo__body">
+        <button class="gr-btn" style="background:#625bf6;color:#fff;border-color:#625bf6;" type="button">Stripe</button>
+        <button class="gr-btn" style="background:#00457c;color:#fff;border-color:#00457c;" type="button">PayPal</button>
+        <button class="gr-btn" style="background:#7289da;color:#fff;border-color:#7289da;" type="button">Discord</button>
+        <button class="gr-btn" style="background:#142f40;color:#fff;" type="button">Android</button>
+        <button class="gr-btn" style="background:#f3a642;color:#000;border-color:#f3a642;" type="button">Kindle</button>
+        <button class="gr-btn" style="background:#4087fc;color:#fff;border-color:#4087fc;" type="button">Zoom</button>
+        <button class="gr-btn" style="background:#5383ec;color:#fff;border-color:#5383ec;" type="button">Google</button>
+        <button class="gr-btn" style="background:#4267b2;color:#fff;border-color:#4267b2;" type="button">Facebook</button>
+        <button class="gr-btn" style="background:#000;color:#fff;" type="button">Apple</button>
+        <button class="gr-btn" style="background:#000;color:#fff;" type="button">TikTok</button>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">States</span><span class="demo__tag">Interactive</span></div>
+      <div class="demo__body">
+        <button class="gr-btn gr-btn--primary" type="button">Rest</button>
+        <button class="gr-btn gr-btn--primary" type="button" disabled>Disabled</button>
+        <button class="gr-btn" type="button">Try tabbing</button>
+        <button class="gr-btn gr-btn--outline" type="button" onclick="openModal()">Opens a modal</button>
+        <button class="gr-btn" type="button" data-toast="success">Fires a toast</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       04 — OFFSET PRINT
+       ==================================================================== -->
+  <section class="sec" id="offset">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">04 — Offset print</p>
+        <h2 class="sec__title">The misregistration stack</h2>
+      </div>
+      <p class="sec__note">
+        A static yellow plate, a red plate that slides out, and the face that slides
+        in. It's the visual grammar of a two-color print slightly out of register.
+        Every primary CTA and every Discover card is built from it.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Sign up</span><span class="demo__tag">Signature</span></div>
+      <div class="demo__body">
+        <div class="gr-offset">
+          <span class="gr-offset__ghost gr-offset__ghost--back" aria-hidden="true"></span>
+          <span class="gr-offset__ghost gr-offset__ghost--front" aria-hidden="true"></span>
+          <a class="gr-offset__face gr-btn gr-btn--primary" href="#offset">Start selling</a>
+        </div>
+        <div class="gr-offset">
+          <span class="gr-offset__ghost gr-offset__ghost--back" aria-hidden="true"></span>
+          <span class="gr-offset__ghost gr-offset__ghost--front" aria-hidden="true"></span>
+          <button class="gr-offset__face gr-btn" type="button" style="height:3.5rem;padding-inline:2rem;font-size:1.25rem;">Secondary</button>
+        </div>
+      </div>
+      <details class="demo__source">
+        <summary>Source</summary>
+<pre>&lt;div class="relative inline-block group"&gt;
+  &lt;div class="absolute inset-0 rounded-sm bg-yellow border border-black
+              transition-transform duration-150 z-2"&gt;&lt;/div&gt;
+  &lt;div class="absolute inset-0 rounded-sm bg-red border border-black
+              transition-transform duration-150
+              group-hover:translate-x-2 group-hover:translate-y-2 z-1"&gt;&lt;/div&gt;
+  &lt;a class="relative inline-flex rounded-sm border border-black
+            transition-all duration-150
+            group-hover:-translate-x-2 group-hover:-translate-y-2 z-3
+            h-14 px-8 text-xl bg-black text-white
+            dark:bg-pink dark:text-black"&gt;Start selling&lt;/a&gt;
+&lt;/div&gt;</pre>
+      </details>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       05 — NAVIGATION
+       ==================================================================== -->
+  <section class="sec" id="nav">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">05 — Navigation</p>
+        <h2 class="sec__title">The border that costs nothing</h2>
+      </div>
+      <p class="sec__note">
+        The nav link's border is transparent at rest and black on hover. Because the
+        border box never changes size, the outline appears with zero layout shift.
+        Resize the window — the same markup is a solid black block on mobile and a
+        transparent pill on desktop.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Menu bar</span><span class="demo__tag">Responsive</span></div>
+      <div class="demo__body" style="gap:.375rem;">
+        <a class="gr-nav-link" href="#nav" aria-current="page">Discover</a>
+        <a class="gr-nav-link" href="#type">Blog</a>
+        <a class="gr-nav-link" href="#fields">Pricing</a>
+        <a class="gr-nav-link" href="#buttons">Features</a>
+        <a class="gr-nav-link" href="#offset">About</a>
+        <a class="gr-nav-link" href="#dark">Gumclaw</a>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Logotype + proof</span><span class="demo__tag">Header</span></div>
+      <div class="demo__body">
+        <a class="seller" href="#nav" style="text-decoration:none; color:inherit;">
+          <svg width="20" height="20" style="flex:none" aria-hidden="true"><use href="#b-github"/></svg>
+          <span class="seller__name" style="font-weight:500;">9.7K</span>
+          <svg width="18" height="18" style="color:rgb(var(--accent));flex:none" aria-hidden="true"><use href="#i-star"/></svg>
+        </a>
+        <span class="demo__tag">fill currentColor — inverts for free</span>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Search</span><span class="demo__tag">Field + button</span></div>
+      <div class="demo__body">
+        <form style="position:relative; width:min(100%,24rem);" onsubmit="event.preventDefault()">
+          <label class="sr-only" for="nav-search">Search marketplace</label>
+          <input class="gr-field" id="nav-search" type="search" name="query" placeholder="Search marketplace ...">
+          <button class="gr-icon-action" type="submit" style="position:absolute;right:.5rem;top:50%;transform:translateY(-50%);">
+            <svg width="20" height="20" aria-hidden="true"><use href="#i-search"/></svg>
+            <span class="sr-only">Search</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       06 — CARDS
+       ==================================================================== -->
+  <section class="sec" id="cards">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">06 — Cards</p>
+        <h2 class="sec__title">The marketplace is the product</h2>
+      </div>
+      <p class="sec__note">
+        729,072 live products at time of capture. The card has to sell an unknown
+        item from an unknown seller in one glance, so the type does the work and
+        the color stays structural.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Product card</span><span class="demo__tag">Discover</span></div>
+      <div class="demo__body demo__body--block">
+        <div class="sheet-grid">
+          <div class="gr-offset" style="width:100%;">
+            <span class="gr-offset__ghost gr-offset__ghost--back" aria-hidden="true"></span>
+            <span class="gr-offset__ghost gr-offset__ghost--front" aria-hidden="true"></span>
+            <a class="gr-offset__face gr-card" href="#cards">
+              <div class="gr-card__media" style="background:linear-gradient(135deg,#f1f333,#ff90e8);"></div>
+              <div class="gr-card__body">
+                <div class="seller">
+                  <img class="seller__avatar" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
+                  <span class="seller__name">Kittomatic</span>
+                  <span class="seller__verified"><svg aria-hidden="true"><use href="#i-check-circle"/></svg></span>
+                </div>
+                <h3 class="gr-card__title">Novabeast [VRChat Avatar]</h3>
+                <div class="stars" aria-label="Rated 4.9 out of 5 from 1,415 reviews">
+                  <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+                  <span class="stars__count">4.9 · 1,415</span>
+                </div>
+                <div class="price" style="margin-top:auto;">$35.00</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="gr-offset" style="width:100%;">
+            <span class="gr-offset__ghost gr-offset__ghost--back" aria-hidden="true"></span>
+            <span class="gr-offset__ghost gr-offset__ghost--front" aria-hidden="true"></span>
+            <a class="gr-offset__face gr-card" href="#cards">
+              <div class="gr-card__media" style="background:linear-gradient(135deg,#90a8ed,#23a094);"></div>
+              <div class="gr-card__body">
+                <div class="seller">
+                  <img class="seller__avatar" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
+                  <span class="seller__name">Simple Market Metrics</span>
+                </div>
+                <h3 class="gr-card__title">Live Futures Educational Platform</h3>
+                <div class="stars" aria-label="Rated 4.9 out of 5 from 34 reviews">
+                  <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+                  <span class="stars__count">4.9 · 34</span>
+                </div>
+                <div class="price" style="margin-top:auto;">$99.00 <span class="price--was">/month</span></div>
+              </div>
+            </a>
+          </div>
+
+          <div class="gr-offset" style="width:100%;">
+            <span class="gr-offset__ghost gr-offset__ghost--back" aria-hidden="true"></span>
+            <span class="gr-offset__ghost gr-offset__ghost--front" aria-hidden="true"></span>
+            <a class="gr-offset__face gr-card" href="#cards">
+              <div class="gr-card__media" style="background:linear-gradient(135deg,#ffc900,#dc341e);"></div>
+              <div class="gr-card__body">
+                <div class="seller">
+                  <img class="seller__avatar" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
+                  <span class="seller__name">The Bindery</span>
+                </div>
+                <h3 class="gr-card__title">The Home Savings Manual</h3>
+                <div class="stars" aria-label="Rated 3.9 out of 5 from 20 reviews">
+                  <svg aria-hidden="true" style="opacity:.25"><use href="#i-star"/></svg><svg aria-hidden="true" style="opacity:.25"><use href="#i-star"/></svg><svg aria-hidden="true" style="opacity:.25"><use href="#i-star"/></svg><svg aria-hidden="true" style="opacity:.25"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+                  <span class="stars__count">3.9 · 20</span>
+                </div>
+                <div class="price" style="margin-top:auto;"><span class="price--strike">$59</span> $39.00</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Blog card</span><span class="demo__tag">GumroadBlog</span></div>
+      <div class="demo__body demo__body--block">
+        <div class="sheet-grid">
+          <article class="post">
+            <div class="post__media" style="background:linear-gradient(135deg,#242423,#90a8ed);"></div>
+            <div class="post__body">
+              <h3 class="post__title"><a href="#cards">International sales are up 16%</a></h3>
+              <p class="post__meta">Sep 9, 2026</p>
+              <p class="post__excerpt">Hi creator, a week ago we turned on the last piece of local-currency checkout…</p>
+              <div class="post__foot">
+                <span class="post__meta">5 min read</span>
+                <a class="gr-icon-action" href="#cards" aria-label="Read International sales are up 16%">
+                  <svg width="20" height="20" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="post">
+            <div class="post__media" style="background:linear-gradient(135deg,#ff90e8,#f1f333);"></div>
+            <div class="post__body">
+              <h3 class="post__title"><a href="#cards">Buyers can now pay in their own currency</a></h3>
+              <p class="post__meta">Sep 3, 2026</p>
+              <p class="post__excerpt">In June we told you buyers could see your prices in their local currency. That is live now…</p>
+              <div class="post__foot">
+                <span class="post__meta">3 min read</span>
+                <a class="gr-icon-action" href="#cards" aria-label="Read Buyers can now pay in their own currency">
+                  <svg width="20" height="20" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Testimonial</span><span class="demo__tag">Features</span></div>
+      <div class="demo__body demo__body--block">
+        <div class="sheet-grid">
+          <figure class="quote">
+            <span class="quote__mark" aria-hidden="true">"</span>
+            <blockquote class="quote__text">I love Gumroad because it can't be any simpler. I upload a file, set a price, and I can start selling on the internet.</blockquote>
+            <figcaption class="quote__by">
+              <span class="quote__handle">dvassallo</span>
+              <span>Daniel Vassallo sells entrepreneurial courses and kitchen tools</span>
+            </figcaption>
+          </figure>
+          <figure class="quote">
+            <span class="quote__mark" aria-hidden="true">"</span>
+            <blockquote class="quote__text">I like to move fast and break shit. Gumroad allows me to quickly experiment with new ideas, without the headache of managing a complicated store.</blockquote>
+            <figcaption class="quote__by">
+              <span class="quote__handle">motionbynick</span>
+              <span>Nick Greenawalt sells motion design tutorials</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       07 — FORMS
+       ==================================================================== -->
+  <section class="sec" id="forms">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">07 — Forms</p>
+        <h2 class="sec__title">Validation states live here</h2>
+      </div>
+      <p class="sec__note">
+        Fields inherit the page typeface and use a 2px pink focus outline. Every
+        state below is a real component. Submit the form to trigger validation and
+        a toast.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Full form</span><span class="demo__tag demo__tag--accent">Try submitting</span></div>
+      <div class="demo__body demo__body--block">
+        <form class="form-grid" id="demo-form" novalidate>
+          <div class="form-row">
+            <label class="label" for="f-name">Name</label>
+            <input class="gr-field" id="f-name" name="name" type="text" placeholder="Ada Lovelace" required>
+            <span class="hint" id="e-name"></span>
+          </div>
+          <div class="form-row">
+            <label class="label" for="f-email">Email</label>
+            <input class="gr-field" id="f-email" name="email" type="email" placeholder="you@example.com" required>
+            <span class="hint" id="e-email"></span>
+          </div>
+          <div class="form-row">
+            <label class="label" for="f-url">Storefront</label>
+            <input class="gr-field" id="f-url" name="url" type="url" placeholder="you.gumroad.com">
+            <span class="hint" id="e-url"></span>
+          </div>
+          <div class="form-row">
+            <label class="label" for="f-price">Price (USD)</label>
+            <input class="gr-field" id="f-price" name="price" type="number" min="1" step="1" value="25">
+            <span class="hint" id="e-price"></span>
+          </div>
+          <label class="check">
+            <input type="checkbox" name="terms">
+            <span>I'm a creator and I agree to the Terms of Service.</span>
+          </label>
+          <span class="hint" id="e-terms"></span>
+          <div class="cluster">
+            <button class="gr-btn gr-btn--primary" type="submit">Start selling</button>
+            <button class="gr-btn" type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Field states</span><span class="demo__tag">Interactive</span></div>
+      <div class="demo__body demo__body--block">
+        <div class="form-grid">
+          <div class="form-row">
+            <span class="label">Rest</span>
+            <input class="gr-field" type="text" placeholder="Anything">
+          </div>
+          <div class="form-row">
+            <span class="label">Focus — try tabbing here</span>
+            <input class="gr-field" type="text" placeholder="2px pink outline">
+          </div>
+          <div class="form-row">
+            <span class="label">Filled</span>
+            <input class="gr-field" type="text" value="PES Master Plus">
+          </div>
+          <div class="form-row">
+            <span class="label">Disabled</span>
+            <input class="gr-field" type="text" value="Locked" disabled>
+          </div>
+          <div class="form-row">
+            <span class="label">Readonly</span>
+            <input class="gr-field" type="text" value="seller_id_6282492303727" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Alerts</span><span class="demo__tag">Semantic</span></div>
+      <div class="demo__body demo__body--block">
+        <div class="stack">
+          <div class="alert alert--success"><svg aria-hidden="true"><use href="#i-check-circle"/></svg><span>Money is in your bank account every Friday.</span></div>
+          <div class="alert alert--danger"><svg aria-hidden="true"><use href="#i-alert"/></svg><span>That email address is already in use.</span></div>
+          <div class="alert alert--warning"><svg aria-hidden="true"><use href="#i-alert"/></svg><span>Connect a payout method before your first sale.</span></div>
+          <div class="alert alert--info"><svg aria-hidden="true"><use href="#i-info"/></svg><span>Since January 1, 2025, Gumroad handles ALL your tax obligations.</span></div>
+          <div class="alert alert--accent"><svg aria-hidden="true"><use href="#i-sparkle"/></svg><span>International sales are up 16% since local-currency checkout launched.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">On a black ground</span><span class="demo__tag">Footer form</span></div>
+      <div class="demo__body demo__body--dark demo__body--block">
+        <form class="form-grid" style="max-width:30rem;" onsubmit="event.preventDefault(); toast('Subscribed — welcome aboard.','success')">
+          <div>
+            <p style="margin:0 0 1rem; font-size:clamp(1.5rem,4vw,2.5rem); font-weight:400; line-height:1.1;">
+              Subscribe to get tips and tactics to grow the way you want.
+            </p>
+          </div>
+          <div class="form-row">
+            <label class="sr-only" for="f-sub">Email address</label>
+            <input class="gr-field gr-field--on-dark" id="f-sub" type="email" placeholder="Your email address" required>
+          </div>
+          <div>
+            <div class="gr-offset">
+              <span class="gr-offset__ghost gr-offset__ghost--back" aria-hidden="true"></span>
+              <span class="gr-offset__ghost gr-offset__ghost--front" aria-hidden="true"></span>
+              <button class="gr-offset__face gr-btn gr-btn--accent" type="submit" style="height:3rem;padding-inline:1.25rem;">
+                <svg width="20" height="20" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                <span class="sr-only">Subscribe</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       08 — ACCORDION
+       ==================================================================== -->
+  <section class="sec" id="accordion">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">08 — Accordion</p>
+        <h2 class="sec__title">Questions big enough to be headlines</h2>
+      </div>
+      <p class="sec__note">
+        Top rule only, no bottom border. A 48px plus icon whose vertical line
+        rotates to become an ×. The answer aligns to the question, not the icon,
+        using a <code>calc()</code> that tracks the fluid gap.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Pricing FAQ</span><span class="demo__tag demo__tag--accent">Click to open</span></div>
+      <div class="demo__body demo__body--block" style="padding-inline:1.5rem;">
+        <div>
+          <button class="gr-accordion__trigger" type="button" aria-expanded="true">
+            <div style="display:flex;align-items:center;gap:clamp(1.5rem,4vw,6rem);width:100%;">
+              <svg class="gr-accordion__icon" viewBox="0 0 32 32" aria-hidden="true">
+                <line x1="8" y1="16" x2="24" y2="16"/><line x1="16" y1="8" x2="16" y2="24"/>
+              </svg>
+              <h3 style="margin:0; font-size:clamp(1.5rem,4vw,2.25rem); font-weight:500; line-height:1.2;">What can I sell on Gumroad?</h3>
+            </div>
+          </button>
+          <div class="gr-accordion__panel">
+            <div>
+              <p style="font-size:clamp(1.125rem,2.5vw,1.5rem); line-height:1.4; margin:0;">
+                Digital products, e-books, courses, tutorials, and memberships — almost
+                anything! A better question is, "What can't I sell on Gumroad?"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <button class="gr-accordion__trigger" type="button" aria-expanded="false">
+            <div style="display:flex;align-items:center;gap:clamp(1.5rem,4vw,6rem);width:100%;">
+              <svg class="gr-accordion__icon" viewBox="0 0 32 32" aria-hidden="true">
+                <line x1="8" y1="16" x2="24" y2="16"/><line x1="16" y1="8" x2="16" y2="24"/>
+              </svg>
+              <h3 style="margin:0; font-size:clamp(1.5rem,4vw,2.25rem); font-weight:500; line-height:1.2;">What are the fees?</h3>
+            </div>
+          </button>
+          <div class="gr-accordion__panel">
+            <div>
+              <p style="font-size:clamp(1.125rem,2.5vw,1.5rem); line-height:1.4; margin:0;">
+                Gumroad doesn't charge a monthly fee. Fees are deducted as a small
+                percentage of every sale, so we only make money when you do.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <button class="gr-accordion__trigger" type="button" aria-expanded="false">
+            <div style="display:flex;align-items:center;gap:clamp(1.5rem,4vw,6rem);width:100%;">
+              <svg class="gr-accordion__icon" viewBox="0 0 32 32" aria-hidden="true">
+                <line x1="8" y1="16" x2="24" y2="16"/><line x1="16" y1="8" x2="16" y2="24"/>
+              </svg>
+              <h3 style="margin:0; font-size:clamp(1.5rem,4vw,2.25rem); font-weight:500; line-height:1.2;">What's changing with taxes?</h3>
+            </div>
+          </button>
+          <div class="gr-accordion__panel">
+            <div>
+              <p style="font-size:clamp(1.125rem,2.5vw,1.5rem); line-height:1.4; margin:0;">
+                We're becoming your merchant of record, which means Gumroad will
+                automatically handle all sales tax collection and remittance worldwide.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       09 — COLOR FIELDS
+       ==================================================================== -->
+  <section class="sec" id="fields">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">09 — Color fields</p>
+        <h2 class="sec__title">Color as layout</h2>
+      </div>
+      <p class="sec__note">
+        No cards, no shadows, no chrome. Two saturated fields split the viewport and
+        a 1px rule does the dividing. The comparison is made by hue and position.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Pricing tiers</span><span class="demo__tag">Pricing</span></div>
+      <div class="demo__body demo__body--block" style="padding:0;">
+        <div class="gr-fields">
+          <div class="gr-fields__cell gr-fields__cell--purple">
+            <div style="max-width:36rem;">
+              <h3 class="gr-fields__figure">10% + $0.50</h3>
+              <p style="font-size:clamp(1.125rem,2.5vw,1.5rem); line-height:1.4; margin:1.5rem 0 0;">
+                Per transaction for all sales through your profile or direct links to your customers.
+              </p>
+            </div>
+          </div>
+          <div class="gr-fields__cell gr-fields__cell--green">
+            <div style="max-width:36rem;">
+              <h3 class="gr-fields__figure">30%</h3>
+              <p style="font-size:clamp(1.125rem,2.5vw,1.5rem); line-height:1.4; margin:1.5rem 0 0;">
+                Per transaction when new customers find and buy from you through our discover marketplace.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Announcement bar</span><span class="demo__tag">Yellow · hard rule</span></div>
+      <div class="demo__body demo__body--block" style="padding:0;">
+        <div class="gr-marquee">
+          <div class="gr-marquee__track" id="bar-track"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       10 — OVERLAYS
+       ==================================================================== -->
+  <section class="sec" id="overlays">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">10 — Overlays</p>
+        <h2 class="sec__title">Modal and toast</h2>
+      </div>
+      <p class="sec__note">
+        The modal traps focus, closes on Escape and on backdrop click, and restores
+        focus to the trigger. The toast slides in from the bottom and keeps the same
+        hard shadow as everything else.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Triggers</span><span class="demo__tag demo__tag--accent">Interactive</span></div>
+      <div class="demo__body">
+        <button class="gr-btn gr-btn--primary" type="button" id="modal-open">Open modal</button>
+        <button class="gr-btn" type="button" data-toast="success">Success toast</button>
+        <button class="gr-btn" type="button" data-toast="danger">Error toast</button>
+        <button class="gr-btn" type="button" data-toast="plain">Plain toast</button>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Z-index scale</span><span class="demo__tag">Reference</span></div>
+      <div class="demo__body demo__body--block">
+        <div class="ramp">
+          <div class="ramp__row"><span class="ramp__meta">0 base</span><span>Document flow</span></div>
+          <div class="ramp__row"><span class="ramp__meta">1 overlay</span><span>Card ghost layers</span></div>
+          <div class="ramp__row"><span class="ramp__meta">2 above</span><span>Decorative parallax</span></div>
+          <div class="ramp__row"><span class="ramp__meta">3 header</span><span>Sticky bars</span></div>
+          <div class="ramp__row"><span class="ramp__meta">10 menubar</span><span>Navigation</span></div>
+          <div class="ramp__row"><span class="ramp__meta">20 modal</span><span>Dialogs</span></div>
+          <div class="ramp__row"><span class="ramp__meta">30 tooltip</span><span>Toasts and tooltips</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       11 — FEEDBACK
+       ==================================================================== -->
+  <section class="sec" id="feedback">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">11 — Feedback</p>
+        <h2 class="sec__title">Metadata and empty states</h2>
+      </div>
+      <p class="sec__note">
+        The dashed 2px border is the only border style in the system and it's reserved
+        exclusively for "nothing here." Pills are the only place <code>rounded-full</code>
+        is allowed.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Chips, pills, badges</span><span class="demo__tag">rounded-full</span></div>
+      <div class="demo__body">
+        <span class="demo__tag demo__tag--accent">Featured</span>
+        <span class="demo__tag">membership</span>
+        <span class="demo__tag">ebook</span>
+        <span class="demo__tag">Free</span>
+        <span class="demo__tag" style="color:rgb(var(--success));">Verified</span>
+        <span class="demo__tag" style="color:rgb(var(--danger));">Sold out</span>
+        <span style="padding:.375rem .75rem; font-size:.875rem; background:rgb(var(--accent)); color:rgb(var(--contrast-accent)); border-radius:9999px;">vrchat</span>
+        <span style="padding:.375rem .75rem; font-size:.875rem; background:rgb(var(--warning)); color:#000; border-radius:9999px;">procreate</span>
+        <span style="padding:.375rem .75rem; font-size:.875rem; background:rgb(var(--info)); color:#000; border-radius:9999px;">notion template</span>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Empty state</span><span class="demo__tag">Dashed — only here</span></div>
+      <div class="demo__body demo__body--block">
+        <div class="gr-empty">
+          <div>
+            <p style="margin:0 0 .5rem; font-size:1.25rem; color:rgb(var(--color));">No products yet</p>
+            <p style="margin:0 0 1.25rem;">Upload a file, set a price, and start selling on the internet.</p>
+            <a class="gr-btn gr-btn--primary" href="#feedback">Create your first product</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Seller row</span><span class="demo__tag">Provenance</span></div>
+      <div class="demo__body demo__body--block">
+        <div class="stack">
+          <div class="seller" style="font-size:1.125rem;">
+            <img class="seller__avatar seller__avatar--lg" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
+            <div>
+              <div style="display:flex;align-items:center;gap:.375rem;">
+                <span style="font-weight:500;">Steph Smith</span>
+                <span class="seller__verified"><svg aria-hidden="true"><use href="#i-check-circle"/></svg></span>
+              </div>
+              <div class="post__meta">Sells content tutorials · $10k+/month</div>
+            </div>
+          </div>
+          <div class="seller" style="font-size:1.125rem;">
+            <img class="seller__avatar seller__avatar--lg" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
+            <div>
+              <div style="display:flex;align-items:center;gap:.375rem;">
+                <span style="font-weight:500;">Daniel Vassallo</span>
+              </div>
+              <div class="post__meta">Sells business insights and expertise</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Live proof</span><span class="demo__tag">Generated, not written</span></div>
+      <div class="demo__body">
+        <div>
+          <div style="font-size:clamp(2.5rem,6vw,3.75rem); font-weight:500; line-height:1;">$1,967,258</div>
+          <p class="hint" style="max-width:22rem;">The amount of income earned by Gumroad digital entrepreneurs last week.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       12 — MOTION
+       ==================================================================== -->
+  <section class="sec" id="motion">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">12 — Motion</p>
+        <h2 class="sec__title">Fast, transform-only, cancellable</h2>
+      </div>
+      <p class="sec__note">
+        Nothing exceeds 300ms. Anything that moves spatially uses <code>transform</code>
+        only. The marquee pauses on hover and dies under <code>prefers-reduced-motion</code>
+        — use the Motion toggle in the top bar to kill all of it at once.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Tag marquee</span><span class="demo__tag">80s linear · pauses on hover</span></div>
+      <div class="demo__body demo__body--block" style="padding:1.5rem;">
+        <div class="marquee-demo">
+          <div class="marquee-demo__track" id="marquee-track"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Timing</span><span class="demo__tag">Reference</span></div>
+      <div class="demo__body demo__body--block">
+        <div class="ramp">
+          <div class="ramp__row"><span class="ramp__meta">.14s</span><span>--transition-duration, the base constant</span></div>
+          <div class="ramp__row"><span class="ramp__meta">.15s</span><span>Hover lift, offset-print ghosts, footer links</span></div>
+          <div class="ramp__row"><span class="ramp__meta">.2s</span><span>Navigation, icon actions</span></div>
+          <div class="ramp__row"><span class="ramp__meta">.3s</span><span>Accordion height, plus-to-x rotation</span></div>
+          <div class="ramp__row"><span class="ramp__meta">cubic-bezier(0,0,.2,1)</span><span>--ease-out</span></div>
+          <div class="ramp__row"><span class="ramp__meta">cubic-bezier(.4,0,.2,1)</span><span>--ease-in-out</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       13 — DARK MODE
+       ==================================================================== -->
+  <section class="sec" id="dark">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">13 — Dark mode</p>
+        <h2 class="sec__title">Ten variables, no toggle</h2>
+      </div>
+      <p class="sec__note">
+        Gumroad ships <code>prefers-color-scheme</code> only — there's no manual switch.
+        The entire dark theme is ten overrides in one media query. Notably,
+        <code>--accent</code> is not one of them: pink is theme-invariant by design,
+        which is why it detonates on <code>#242423</code>.
+      </p>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">The override</span><span class="demo__tag">Entire dark theme</span></div>
+      <div class="demo__body demo__body--block" style="padding:0;">
+<pre style="margin:0; padding:1.5rem; overflow-x:auto; font-family:ui-monospace,Menlo,Consolas,monospace;
+            font-size:.8125rem; line-height:1.7; background:rgb(var(--color)/.04);">@media (prefers-color-scheme: dark) {
+  :root, :host {
+    --body-bg: #242423;        /* was #f4f4f0 */
+    --primary: 221 221 221;    /* was 0 0 0     */
+    --contrast-primary: 0 0 0;
+    --color: 221 221 221;      /* was 0 0 0     */
+    --filled: 0 0 0;           /* was 255 255 255 */
+    --neutral-color: 221 221 221;
+    --neutral-filled: 0 0 0;
+    --neutral-border-alpha: .35;
+    --contrast-filled: 221 221 221;
+    --contrast-black: 221 221 221;
+    --border-alpha: .35;       /* borders weaken, they don't change color */
+    /* --accent is deliberately absent. */
+  }
+}</pre>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo__bar"><span class="demo__name">Dark, side by side</span><span class="demo__tag">Swipe the theme control</span></div>
+      <div class="demo__body demo__body--block">
+        <div class="sheet-grid">
+          <div style="padding:1.5rem; background:#f4f4f0; color:#000; border-radius:.25rem;">
+            <p style="margin:0 0 1rem; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:rgb(0 0 0/.45);">Light</p>
+            <div class="cluster">
+              <span class="cluster" style="padding:.5rem 1rem; background:#000; color:#fff; border:1px solid #000; border-radius:.25rem; font-size:.875rem;">Start selling</span>
+              <span class="cluster" style="padding:.5rem 1rem; border:1px solid rgb(0 0 0/.35); border-radius:.25rem; font-size:.875rem;">Ghost</span>
+            </div>
+            <p style="margin:1.25rem 0 0; font-size:.875rem; color:rgb(0 0 0/.55);">warm gray ground, solid black ink</p>
+          </div>
+          <div style="padding:1.5rem; background:#242423; color:#ddd; border-radius:.25rem;">
+            <p style="margin:0 0 1rem; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:rgb(221 221 221/.45);">Dark</p>
+            <div class="cluster">
+              <span class="cluster" style="padding:.5rem 1rem; background:#ff90e8; color:#000; border:1px solid #ff90e8; border-radius:.25rem; font-size:.875rem;">Start selling</span>
+              <span class="cluster" style="padding:.5rem 1rem; border:1px solid rgb(255 255 255/.35); border-radius:.25rem; font-size:.875rem;">Ghost</span>
+            </div>
+            <p style="margin:1.25rem 0 0; font-size:.875rem; color:rgb(221 221 221/.55);">warm black ground, translucent borders</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       14 — THE RULES
+       ==================================================================== -->
+  <section class="sec" id="rules">
+    <div class="sec__head">
+      <div>
+        <p class="sec__num">14 — The rules</p>
+        <h2 class="sec__title">Ten things that make it tick</h2>
+      </div>
+      <p class="sec__note">
+        The minimum viable kit. Break one and the system stops reading as intentional.
+      </p>
+    </div>
+
+    <div class="rules">
+      <div class="rule"><p><b>1px black border</b>On every solid element. It's the load-bearing part of the aesthetic, not a finish.</p></div>
+      <div class="rule"><p><b>Zero blur, always</b><code>4px 4px 0</code>, never <code>4px 4px 8px rgba()</code>. Blur reads generic.</p></div>
+      <div class="rule"><p><b>Offset equals travel</b>Move 4px, reveal 4px. The relationship is the whole trick.</p></div>
+      <div class="rule"><p><b>Flat color</b>Six brights at full value. No gradients, no tint ramps, no 50-shade grays.</p></div>
+      <div class="rule"><p><b>Pink means interaction</b><code>#ff90e8</code> and nothing else. One accent, used relentlessly.</p></div>
+      <div class="rule"><p><b>Display weight 400</b>Bold heroes give you generic neobrutalism. Let the border be loud.</p></div>
+      <div class="rule"><p><b>Warm neutrals</b><code>#f4f4f0</code> / <code>#242423</code>. True gray lets the brights vibrate.</p></div>
+      <div class="rule"><p><b>sm corners, full pills</b><code>rounded-sm</code> for cards. <code>rounded-full</code> only where it's semantically a pill.</p></div>
+      <div class="rule"><p><b>150ms, transform only</b>Nothing above 300ms. Animating shadows destroys the hard edge.</p></div>
+      <div class="rule"><p><b>Respect reduced motion</b>Every animation dies under <code>prefers-reduced-motion</code>.</p></div>
+    </div>
+
+    <div class="demo" style="margin-top:2rem;">
+      <div class="demo__bar"><span class="demo__name">The whole system in one block</span><span class="demo__tag">Copy me</span></div>
+      <div class="demo__body demo__body--block" style="padding:0;">
+<pre style="margin:0; padding:1.5rem; overflow-x:auto; font-family:ui-monospace,Menlo,Consolas,monospace;
+            font-size:.8125rem; line-height:1.7; background:rgb(var(--color)/.04);">:root {
+  color-scheme: light dark;
+  --accent: 255 144 232;   --pink: 255 144 232;   --purple: 144 168 237;
+  --green: 35 160 148;     --orange: 255 201 0;   --red: 220 52 30;
+  --yellow: 241 243 51;    --body-bg: #f4f4f0;
+  --color: 0 0 0;          --filled: 255 255 255; --border-alpha: 1;
+  --border-width: .0625rem;
+  --border: solid .0625rem rgb(var(--color) / var(--border-alpha));
+  --outline: .125rem solid rgb(var(--accent));
+  --radius-sm: .25rem;
+  --box-shadow-1: .25rem .25rem 0 rgb(var(--color));
+  --transition-duration: .14s;
+  --ease-out: cubic-bezier(0, 0, .2, 1);
+}
+*  { --border: solid .0625rem rgb(var(--color) / var(--border-alpha, 1));
+     --outline: .125rem solid rgb(var(--accent)); }
+body { font-family: "ABC Favorit", Avenir, Montserrat, Corbel, sans-serif;
+       line-height: 1.375; background: var(--body-bg); color: rgb(var(--color)); }</pre>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========================================================================
+     FOOTER
+     ======================================================================== -->
+<footer class="sheet-foot">
+  <div class="sheet-foot__inner">
+    <div>
+      <h2>Share your work.<br>Someone out there needs it.</h2>
+      <p>
+        Reconstructed from the production build of gumroad.com on 2026-09-28 — the
+        shipped stylesheet, the Inertia page props, and the compiled React bundles.
+        Not a screenshot study. Every value here was copied from what serves.
+      </p>
+      <div class="cluster" style="margin-top:1.5rem; gap:.75rem;">
+        <a class="sheet-foot__icon" href="#top" aria-label="Back to top">
+          <svg width="24" height="24" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+        </a>
+        <a href="#top" aria-label="GitHub" style="display:flex; color:inherit;"><svg width="24" height="24" aria-hidden="true"><use href="#b-github"/></svg></a>
+        <a href="#top" aria-label="X" style="display:flex; color:inherit;"><svg width="24" height="24" aria-hidden="true"><use href="#b-x"/></svg></a>
+        <a href="#top" aria-label="Instagram" style="display:flex; color:inherit;"><svg width="24" height="24" aria-hidden="true"><use href="#b-instagram"/></svg></a>
+        <a href="#top" aria-label="YouTube" style="display:flex; color:inherit;"><svg width="24" height="24" aria-hidden="true"><use href="#b-youtube"/></svg></a>
+      </div>
+    </div>
+    <div class="sheet-foot__cols">
+      <div class="sheet-foot__col">
+        <p class="sheet-foot__col-title">Gumroad</p>
+        <a class="gr-footer-link" href="#color">Discover</a>
+        <a class="gr-footer-link" href="#type">Blog</a>
+        <a class="gr-footer-link" href="#fields">Pricing</a>
+        <a class="gr-footer-link" href="#buttons">Features</a>
+      </div>
+      <div class="sheet-foot__col">
+        <p class="sheet-foot__col-title">Sheet</p>
+        <a class="gr-footer-link" href="#mechanic">The mechanic</a>
+        <a class="gr-footer-link" href="#forms">Forms</a>
+        <a class="gr-footer-link" href="#dark">Dark mode</a>
+        <a class="gr-footer-link" href="#rules">The rules</a>
+      </div>
+      <div class="sheet-foot__col">
+        <p class="sheet-foot__col-title">Source</p>
+        <a class="gr-footer-link" href="archive/GUMROAD-DESIGN-LANGUAGE.md">Design language doc</a>
+        <a class="gr-footer-link" href="assets/gumroad-tokens.css">Tokens CSS</a>
+        <a class="gr-footer-link" href="assets/gumroad-components.css">Components CSS</a>
+        <a class="gr-footer-link" href="archive/_research/design.css">Production stylesheet</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.sheet -->
+
+<!-- ========================================================================
+     OVERLAYS
+     ======================================================================== -->
+<div class="sheet-modal" id="modal" hidden>
+  <div class="sheet-modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+      <h2 id="modal-title" style="margin:0; font-size:1.75rem; font-weight:400; line-height:1.1;">Refunds are instant</h2>
+      <button class="gr-icon-action" type="button" id="modal-close" aria-label="Close dialog">
+        <svg width="20" height="20" aria-hidden="true"><use href="#i-x"/></svg>
+      </button>
+    </div>
+    <p style="margin:0; line-height:1.5; color:rgb(var(--color)/.75);">
+      Gumclaw issues refunds, reviews risk, and resolves payout questions
+      autonomously, around the clock. This is what the modal component is: a
+      centered panel, a hard border, a hard shadow, and a focus trap.
+    </p>
+    <label class="check" style="margin-top:.5rem;">
+      <input type="checkbox" checked>
+      <span>Email me a copy of the receipt</span>
+    </label>
+    <div class="cluster" style="margin-top:.5rem;">
+      <button class="gr-btn gr-btn--primary" type="button" id="modal-confirm">Confirm</button>
+      <button class="gr-btn" type="button" id="modal-cancel">Cancel</button>
+    </div>
+    <p class="hint">Press Escape, or click the backdrop, to close. Focus returns to the trigger.</p>
+  </div>
+</div>
+
+<div class="toast-host" id="toast-host" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------------------------------------------------------- theme */
+  var root = document.documentElement;
+  var themeButtons = Array.prototype.slice.call(document.querySelectorAll("[data-theme-set]"));
+
+  function applyTheme(mode) {
+    if (mode === "system") root.removeAttribute("data-theme");
+    else root.setAttribute("data-theme", mode);
+    themeButtons.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.themeSet === mode));
+    });
+    try { localStorage.setItem("gr-sheet-theme", mode); } catch (e) {}
+    buildSwatches();
+  }
+
+  themeButtons.forEach(function (b) {
+    b.addEventListener("click", function () { applyTheme(b.dataset.themeSet); });
+  });
+
+  var saved = "system";
+  try { saved = localStorage.getItem("gr-sheet-theme") || "system"; } catch (e) {}
+  // NOTE: applyTheme() is invoked at the bottom of this IIFE, once every
+  // declaration below has been evaluated. Calling it here would run
+  // buildSwatches() before PALETTE is assigned.
+
+  /* --------------------------------------------------------------- motion */
+  var motionBtn = document.getElementById("motion-toggle");
+  var motionLabel = document.getElementById("motion-label");
+  motionBtn.addEventListener("click", function () {
+    var off = root.getAttribute("data-motion") === "off";
+    if (off) root.removeAttribute("data-motion");
+    else root.setAttribute("data-motion", "off");
+    motionBtn.setAttribute("aria-pressed", String(!off));
+    motionLabel.textContent = off ? "Motion on" : "Motion off";
+  });
+
+  /* ------------------------------------------------------------ the lab */
+  var labBtn = document.getElementById("lab-btn");
+  var travel = document.getElementById("lab-travel");
+  var shadow = document.getElementById("lab-shadow");
+  var travelOut = document.getElementById("lab-travel-out");
+  var shadowOut = document.getElementById("lab-shadow-out");
+  var verdict = document.getElementById("lab-verdict");
+
+  function syncLab() {
+    var t = travel.value;
+    var s = shadow.value;
+    travelOut.textContent = t;
+    shadowOut.textContent = s;
+    labBtn.style.setProperty("--travel", t + "px");
+    labBtn.style.setProperty("--shadow-size", s + "px");
+
+    if (s === 0) {
+      verdict.textContent = "No shadow. The element just drifts. Reads as a bug, not a hover.";
+      verdict.className = "hint hint--danger";
+    } else if (s === t) {
+      verdict.textContent = "Locked. The shadow exactly fills the gap the element left. This is the rule.";
+      verdict.className = "hint hint--success";
+    } else if (s > t) {
+      verdict.textContent = "Shadow overtravels — the plate looks misaligned rather than lifted.";
+      verdict.className = "hint hint--danger";
+    } else {
+      verdict.textContent = "Shadow underfills — the element floats, and the illusion leaks.";
+      verdict.className = "hint hint--danger";
+    }
+  }
+  [travel, shadow].forEach(function (el) { el.addEventListener("input", syncLab); });
+  labBtn.addEventListener("mouseenter", function () { labBtn.classList.add("is-on"); });
+  labBtn.addEventListener("mouseleave", function () { labBtn.classList.remove("is-on"); });
+  labBtn.addEventListener("focus", function () { labBtn.classList.add("is-on"); });
+  labBtn.addEventListener("blur", function () { labBtn.classList.remove("is-on"); });
+  syncLab();
+
+  /* ----------------------------------------------------------- swatches */
+  var PALETTE = [
+    { name: "pink",   hex: "#ff90e8", role: "Accent — interaction only" },
+    { name: "purple", hex: "#90a8ed", role: "Direct-sales field" },
+    { name: "green",  hex: "#23a094", role: "Discover-channel field" },
+    { name: "orange", hex: "#ffc900", role: "Warm highlight" },
+    { name: "red",    hex: "#dc341e", role: "Offset ghost, danger" },
+    { name: "yellow", hex: "#f1f333", role: "Offset ghost, announcement" },
+    { name: "gray",   hex: "#f4f4f0", role: "Page background — warm" },
+    { name: "dark",   hex: "#242423", role: "Dark background — warm" }
+  ];
+
+  function luminance(hex) {
+    var c = hex.replace("#", "");
+    var v = [0, 1, 2].map(function (i) {
+      var ch = parseInt(c.substr(i * 2, 2), 16) / 255;
+      return ch <= 0.03928 ? ch / 12.92 : Math.pow((ch + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+  }
+  function ratio(a, b) {
+    var la = luminance(a), lb = luminance(b);
+    var hi = Math.max(la, lb), lo = Math.min(la, lb);
+    return (hi + 0.05) / (lo + 0.05);
+  }
+
+  function buildSwatches() {
+    var host = document.getElementById("swatches");
+    if (!host) return;
+    host.innerHTML = "";
+    PALETTE.forEach(function (p) {
+      var onWhite = ratio(p.hex, "#ffffff");
+      var onBlack = ratio(p.hex, "#000000");
+      var el = document.createElement("div");
+      el.className = "swatch";
+      el.innerHTML =
+        '<div class="swatch__chip" style="background:' + p.hex + '"></div>' +
+        '<div class="swatch__meta">' +
+          '<span class="swatch__name">' + p.name + '</span>' +
+          '<span class="swatch__hex">' + p.hex + " · " + p.role + "</span>" +
+          '<div class="swatch__ratios">' +
+            '<span class="swatch__ratio" data-pass="' + (onWhite >= 4.5) + '"><span>on white</span><span>' + onWhite.toFixed(2) + (onWhite >= 4.5 ? " AA" : " fail") + "</span></span>" +
+            '<span class="swatch__ratio" data-pass="' + (onBlack >= 4.5) + '"><span>on black</span><span>' + onBlack.toFixed(2) + (onBlack >= 4.5 ? " AA" : " fail") + "</span></span>" +
+          "</div>" +
+        "</div>";
+      host.appendChild(el);
+    });
+  }
+  buildSwatches();
+
+  /* ---------------------------------------------------------- accordion */
+  Array.prototype.forEach.call(document.querySelectorAll(".gr-accordion__trigger"), function (trigger) {    trigger.addEventListener("click", function () {
+      var open = trigger.getAttribute("aria-expanded") === "true";
+      trigger.setAttribute("aria-expanded", String(!open));
+    });
+  });
+
+  /* -------------------------------------------------------------- modal */
+  var modal = document.getElementById("modal");
+  var modalOpen = document.getElementById("modal-open");
+  var lastFocus = null;
+
+  function openModal() {
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.getElementById("modal-close").focus();
+  }
+  function closeModal() {
+    modal.hidden = true;
+    if (lastFocus) lastFocus.focus();
+  }
+
+  modalOpen.addEventListener("click", openModal);
+  document.getElementById("modal-close").addEventListener("click", closeModal);
+  document.getElementById("modal-cancel").addEventListener("click", closeModal);
+  document.getElementById("modal-confirm").addEventListener("click", function () {
+    closeModal();
+    toast("Refund issued. The agent handled it.", "success");
+  });
+  // Backdrop dismissal. Listening for `click` (not `mousedown`) matches what
+  // the panel's own hint text tells the user to do, and it means a press that
+  // starts inside the panel and is released on the backdrop does not dismiss.
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (modal.hidden) return;
+    if (e.key === "Escape") { closeModal(); return; }
+    if (e.key !== "Tab") return;
+    var focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  /* -------------------------------------------------------------- toast */
+  var ICONS = { success: "i-check-circle", danger: "i-alert", plain: "i-info" };
+  function toast(message, kind) {
+    kind = kind || "plain";
+    var host = document.getElementById("toast-host");
+    var el = document.createElement("div");
+    el.className = "toast toast--" + kind;
+    el.innerHTML = '<svg aria-hidden="true"><use href="#' + ICONS[kind] + '"/></svg><span></span>';
+    el.querySelector("span").textContent = message;
+    host.appendChild(el);
+    window.setTimeout(function () { el.remove(); }, 3200);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-toast]"), function (b) {
+    b.addEventListener("click", function () {
+      var kind = b.dataset.toast;
+      var msg = kind === "success" ? "Money is on its way to your bank."
+        : kind === "danger" ? "That payout method is incomplete."
+        : "Saved. Nothing else to do.";
+      toast(msg, kind);
+    });
+  });
+  window.toast = toast;
+  window.openModal = openModal;
+
+  /* -------------------------------------------------------- form states */
+  var form = document.getElementById("demo-form");
+  function setError(name, message, good) {
+    var el = document.getElementById("e-" + name);
+    if (!el) return;
+    el.textContent = message;
+    el.className = "hint " + (good ? "hint--success" : message ? "hint--danger" : "");
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var ok = true;
+
+    var name = form.elements.name.value.trim();
+    if (name.length < 2) { setError("name", "Tell us what to call you."); ok = false; }
+    else setError("name", "Looks good.", true);
+
+    var email = form.elements.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { setError("email", "That doesn't look like an email address."); ok = false; }
+    else setError("email", "We'll send the receipt here.", true);
+
+    var url = form.elements.url.value.trim();
+    if (url && !/^https?:\/\/.+\..+/.test(url)) { setError("url", "Include https:// so we can verify it."); ok = false; }
+    else setError("url", url ? "Storefront verified." : "Optional — you can add one later.", true);
+
+    var price = parseInt(form.elements.price.value, 10);
+    if (!(price >= 1)) { setError("price", "Must be at least $1."); ok = false; }
+    else setError("price", "$" + price + ". Gumroad takes 10% + $0.50.", true);
+
+    if (!form.elements.terms.checked) { setError("terms", "You have to agree to sell things."); ok = false; }
+    else setError("terms", "", true);
+
+    toast(ok ? "You're selling. Welcome aboard." : "Fix the highlighted fields.", ok ? "success" : "danger");
+  });
+
+  form.addEventListener("reset", function () {
+    window.setTimeout(function () {
+      ["name", "email", "url", "price", "terms"].forEach(function (n) { setError(n, ""); });
+    }, 0);
+  });
+
+  /* ------------------------------------------------------------ marquee */
+  var TAGS = ["vrchat", "notion template", "blender", "3d model", "procreate", "notion",
+              "meditation", "comic", "textures", "manga", "investing", "mockup",
+              "brushes", "anime", "font", "education", "fitness", "yoga"];
+  function fillMarquee(id) {
+    var host = document.getElementById(id);
+    if (!host) return;
+    var run = TAGS.map(function (t) {
+      return '<span class="marquee-demo__item"><svg width="18" height="18" style="color:rgb(0 0 0/.6)" aria-hidden="true"><use href="#i-sparkle"/></svg>' + t + "</span>";
+    }).join("");
+    host.innerHTML = run + run + run + run;
+  }
+  fillMarquee("marquee-track");
+  fillMarquee("bar-track");
+
+  /* ------------------------------------------------------------- boot */
+  applyTheme(saved);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+/* ==========================================================================
+   Gumroad component recipes
+   Requires gumroad-tokens.css
+   Class names and values reconstructed from the production Tailwind output.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Button — the signature interaction
+   Shadow is REVEALED by movement, never faded in. Offset === travel distance.
+   -------------------------------------------------------------------------- */
+.gr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .75rem 1rem;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.375;
+  color: currentColor;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  background: transparent;
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  transition: transform .15s var(--ease-out);
+}
+
+.gr-btn:hover  { transform: translate(-.25rem, -.25rem); box-shadow: .25rem .25rem 0 #000; }
+.gr-btn:active { transform: translate(0, 0);                  box-shadow: none; }
+
+/* Size: sm */
+.gr-btn--sm { padding: .5rem; font-size: .875rem; line-height: 1.3; }
+
+/* Size: primary CTA — chunky, and inverts to pink in dark mode */
+.gr-btn--primary {
+  height: 3.5rem;
+  padding-inline: 2rem;
+  font-size: 1.25rem;
+  background: #000;
+  color: #fff;
+}
+@media (min-width: 64rem) {
+  .gr-btn--primary { height: 4rem; padding-inline: 2.5rem; }
+}
+@media (prefers-color-scheme: dark) {
+  .gr-btn--primary { background: rgb(var(--accent)); color: #000; }
+}
+
+.gr-btn--accent    { background: rgb(var(--accent)); color: rgb(var(--contrast-accent)); }
+.gr-btn--danger    { background: rgb(var(--danger));  color: rgb(var(--contrast-danger)); }
+.gr-btn--warning   { background: rgb(var(--warning)); color: rgb(var(--contrast-warning)); }
+.gr-btn--success   { background: rgb(var(--success)); color: rgb(var(--contrast-success)); }
+
+/* Outline: transparent bg, black border, fill on hover */
+.gr-btn--outline:hover { background: #000; color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .gr-btn--outline:hover { background: #fff; color: #000; }
+}
+
+/* --------------------------------------------------------------------------
+   2. Offset-print stack — the misregistration component
+   Yellow static + red slides out + face slides in. Used on every CTA and
+   every Discover product card.
+   -------------------------------------------------------------------------- */
+.gr-offset { position: relative; display: inline-block; }
+
+.gr-offset__ghost {
+  position: absolute;
+  inset: 0;
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  transition: transform .15s var(--ease-out);
+}
+
+.gr-offset__ghost--back { background: var(--yellow); z-index: 2; }  /* #f1f333 */
+.gr-offset__ghost--front {
+  background: var(--red);                                           /* #dc341e */
+  z-index: 1;
+}
+
+.gr-offset:hover .gr-offset__ghost--front { transform: translate(.5rem, .5rem); }
+.gr-offset:hover .gr-offset__face       { transform: translate(-.5rem, -.5rem); }
+
+.gr-offset__face {
+  position: relative;
+  z-index: 3;
+  transition: transform .15s var(--ease-out);
+}
+
+/* --------------------------------------------------------------------------
+   3. Nav link — one class string, mobile and desktop
+   Border is transparent at rest, black on hover. Never a layout shift.
+   -------------------------------------------------------------------------- */
+.gr-nav-link {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 1.125rem;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  background: #000;
+  border: 1px solid transparent;
+  transition: all .2s var(--ease-in-out);
+}
+.gr-nav-link:hover { border-color: #000; }
+
+@media (min-width: 64rem) {
+  .gr-nav-link {
+    width: auto;
+    padding: .5rem 1rem;
+    color: rgb(var(--color));
+    background: transparent;
+    border-radius: 9999px;
+  }
+  .gr-nav-link:hover { border-color: rgb(var(--color)); }
+  .gr-nav-link[aria-current="page"] {
+    color: rgb(var(--contrast-primary));
+    background: rgb(var(--primary));
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .gr-nav-link:hover { border-color: rgb(255 255 255 / .35); }
+}
+
+/* --------------------------------------------------------------------------
+   4. Product card
+   -------------------------------------------------------------------------- */
+.gr-card {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  text-decoration: none;
+  background: rgb(var(--filled));
+  border: var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.gr-card__media {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-bottom: var(--border);
+}
+.gr-card__media img { width: 100%; height: 100%; object-fit: cover; }
+
+.gr-card__body { display: flex; flex: 1; flex-direction: column; gap: .5rem; padding: 1.5rem; }
+.gr-card__title { margin: 0; font-size: 1.25rem; font-weight: 500; line-height: 1.4; }
+.gr-card__meta { font-size: .875rem; color: rgb(var(--color) / .5); }
+
+.gr-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 768px) { .gr-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 64rem) { .gr-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* --------------------------------------------------------------------------
+   5. Small icon action — the same mechanic at 40px
+   1px travel, 2px shadow. Small elements need a doubled shadow to register.
+   -------------------------------------------------------------------------- */
+.gr-icon-action {
+  display: flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem;
+  border: 1px solid rgb(var(--color) / .4);
+  border-radius: .375rem;
+  transition: all .2s var(--ease-in-out);
+}
+.gr-icon-action:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* --------------------------------------------------------------------------
+   6. Field — inherits the page typeface
+   -------------------------------------------------------------------------- */
+.gr-field {
+  display: block;
+  width: 100%;
+  padding: .75rem 1rem;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.375;
+  color: rgb(var(--color));
+  background: rgb(var(--filled));
+  border: var(--border);
+  border-radius: var(--radius-sm);
+}
+.gr-field::placeholder { color: rgb(var(--color) / .5); }
+.gr-field:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 0;
+}
+.gr-field:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+/* On a dark ground: translucent white border, no fill */
+.gr-field--on-dark {
+  color: #fff;
+  background: transparent;
+  border-color: rgb(255 255 255 / .3);
+}
+.gr-field--on-dark::placeholder { color: rgb(255 255 255 / .5); }
+.gr-field--on-dark:focus-visible {
+  outline: none;
+  border-color: rgb(var(--accent));
+  box-shadow: 0 0 0 1px rgb(var(--accent));
+}
+
+/* --------------------------------------------------------------------------
+   7. Accordion — top rule only, 48px plus icon that rotates to an x
+   -------------------------------------------------------------------------- */
+.gr-accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.5rem 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  border-top: var(--border);
+}
+@media (min-width: 640px) { .gr-accordion__trigger { padding: 3rem 0; } }
+@media (min-width: 768px) { .gr-accordion__trigger { padding: 4rem 0; } }
+
+.gr-accordion__icon {
+  width: 3rem;
+  height: 3rem;
+  flex: none;
+}
+.gr-accordion__icon line {
+  stroke: currentColor;
+  stroke-width: 2;
+}
+.gr-accordion__icon line:last-child { transition: transform .3s var(--ease-in-out); }
+.gr-accordion__trigger[aria-expanded="true"] .gr-accordion__icon line:last-child {
+  transform: rotate(90deg);
+}
+
+.gr-accordion__panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: all .3s var(--ease-in-out);
+}
+.gr-accordion__trigger[aria-expanded="true"] + .gr-accordion__panel {
+  max-height: 60rem;
+}
+
+/* Align the answer with the question, not the icon — fluid, via calc() */
+.gr-accordion__panel > div {
+  padding: 0 0 4rem;
+  padding-left: calc(3rem + 4vw);
+}
+@media (min-width: 768px) {
+  .gr-accordion__panel > div { padding-left: calc(3rem + 12vw); }
+}
+
+/* --------------------------------------------------------------------------
+   8. Color field — color as layout, divided by a hard rule
+   -------------------------------------------------------------------------- */
+.gr-fields {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-bottom: var(--border);
+}
+@media (min-width: 64rem) { .gr-fields { flex-direction: row; } }
+
+.gr-fields__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+@media (min-width: 768px) { .gr-fields__cell { padding: 6rem; } }
+@media (min-width: 80rem) { .gr-fields__cell { padding: 8rem; } }
+
+@media (min-width: 64rem) {
+  .gr-fields__cell { width: 50%; }
+  .gr-fields__cell + .gr-fields__cell { border-left: var(--border); }
+}
+@media (max-width: 63.999rem) {
+  .gr-fields__cell + .gr-fields__cell { border-top: var(--border); }
+}
+
+.gr-fields__cell--purple { background: #90a8ed; color: #000; }
+.gr-fields__cell--green  { background: #23a094; color: #000; }
+
+.gr-fields__figure {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1;
+}
+@media (min-width: 64rem) { .gr-fields__figure { font-size: 3.75rem; } }
+
+/* --------------------------------------------------------------------------
+   9. Display type — light weight is non-negotiable
+   -------------------------------------------------------------------------- */
+.gr-display {
+  margin: 0;
+  font-size: 3.75rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.025em;
+}
+@media (min-width: 768px)  { .gr-display { font-size: 4.5rem; } }
+@media (min-width: 64rem)  { .gr-display { font-size: 6rem; } }
+
+.gr-lede {
+  font-size: 1.25rem;
+  max-width: 28rem;
+}
+@media (min-width: 64rem) {
+  .gr-lede { font-size: 1.5rem; max-width: 48rem; }
+}
+
+/* --------------------------------------------------------------------------
+   10. Empty state — the only dashed border in the system
+   -------------------------------------------------------------------------- */
+.gr-empty {
+  display: flex;
+  min-height: 300px;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: rgb(var(--color) / .5);
+  text-align: center;
+  border: 2px dashed rgb(var(--color) / .3);
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   11. Footer link — pink on hover. Cheapest accent in the system.
+   -------------------------------------------------------------------------- */
+.gr-footer-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color .15s var(--ease-out);
+}
+.gr-footer-link:hover { color: rgb(var(--accent)); }
+
+/* --------------------------------------------------------------------------
+   12. Marquee — pauses on hover, dies under prefers-reduced-motion
+   -------------------------------------------------------------------------- */
+.gr-marquee {
+  display: flex;
+  height: 3.5rem;
+  align-items: center;
+  gap: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  background: oklch(85.2% .199 91.936);   /* #f9d919-ish yellow-400 */
+  border-bottom: var(--border);
+}
+.gr-marquee:hover { animation-play-state: paused; }
+.gr-marquee__track {
+  display: flex;
+  flex: none;
+  gap: 1rem;
+  animation: marquee-scroll 80s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gr-marquee__track { animation: none; }
+}
+
+/* --------------------------------------------------------------------------
+   13. Parallax decoration — never intercepts pointer events
+   -------------------------------------------------------------------------- */
+.gr-parallax {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.gr-parallax__item {
+  position: absolute;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   14. Forced colors — disabled controls go dashed
+   -------------------------------------------------------------------------- */
+@media (forced-colors: active) {
+  .gr-btn:disabled,
+  .gr-field:disabled {
+    border-style: dashed;
+    background: transparent;
+  }
+  .gr-btn:hover { box-shadow: none; }
+}
